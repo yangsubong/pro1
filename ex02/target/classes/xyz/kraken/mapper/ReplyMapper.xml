@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xyz.kraken.mapper.ReplyMapper">
+
+	<insert id="insert">
+		INSERT INTO TBL_REPLY(RNO,BNO,REPLY,REPLYER)  
+		VALUES(SEQ_REPLY.NEXTVAL,#{bno},#{reply},#{replyer})
+	</insert>
+	
+	<insert id="insert2">
+		INSERT INTO TBL_REPLY(RNO,BNO,REPLY,REPLYER)  
+		VALUES(SEQ_REPLY.NEXTVAL,#{bno},#{reply},#{replyer})
+	</insert>
+	
+	<select id="getListWithPaging" resultType="xyz.kraken.domain.ReplyVO">
+		SELECT * FROM TBL_REPLY WHERE BNO = #{bno} AND BNO > 0
+	</select>
+	
+	<select id="getListWithPaging2" resultType="map">
+		SELECT * FROM TBL_REPLY WHERE BNO = #{bno} AND BNO > 0
+	</select>
+	
+	<update id="update">
+	 UPDATE TBL_REPLY SET 
+	    REPLY = #{reply},
+	    UPDATEDATE = SYSDATE
+	 WHERE RNO = #{rno}
+	</update>
+
+	<delete id="delete">
+		DELETE TBL_REPLY WHERE RNO = #{rno}
+	</delete>
+
+	<select id="read" resultType="xyz.kraken.domain.ReplyVO">
+		SELECT * FROM TBL_REPLY WHERE RNO = #{rno}
+	</select>
+</mapper>
